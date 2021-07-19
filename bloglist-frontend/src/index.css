@@ -1,0 +1,28 @@
+
+  .info {
+    color: rgb(0, 128, 0);
+    background: lightgrey;
+    font-size: 20px;
+    border-style: solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  .error {
+    color: rgb(190, 21, 21);
+    background: lightgrey;
+    font-size: 20px;
+    border-style: solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  .blog {
+    padding-top: 10px;
+    padding-left: 2px;
+    border: solid 1px;
+    margin-bottom: 5px;
+  }
+  .remove {
+    background-color: rgb(107, 71, 238);
+  }
