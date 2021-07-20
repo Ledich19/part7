@@ -1,21 +1,27 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { addBlog } from '../reducers/blogReducer'
+import { setNotification } from '../reducers/notificationReducer'
 
-const BlogForm = ({ createBlog }) => {
+const BlogForm = ({ toggleVisibility }) => {
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [url, setUrl] = useState('')
-  const handlChengeeTitle = (e) => setTitle(e.target.value)
-  const handlChengeeAuthor = (e) => setAuthor(e.target.value)
-  const handlChengeeBlogUrl = (e) => setUrl(e.target.value)
+
+  const dispatch = useDispatch()
+  const user = useSelector(state => state.user)
 
   const handleAddBlog = async (event) => {
     event.preventDefault()
-    const blog = {
+    const newBlog = {
       author,
       title,
       url,
     }
-    createBlog(blog)
+    toggleVisibility()
+    dispatch(addBlog(newBlog, user.name, user.username))
+    dispatch(setNotification(`a new blog ${newBlog.title} by ${newBlog.author}`, 5))
+
     setTitle('')
     setAuthor('')
     setUrl('')
@@ -32,7 +38,7 @@ const BlogForm = ({ createBlog }) => {
             type="text"
             value={title}
             name="Title"
-            onChange={handlChengeeTitle}
+            onChange={(e) => setTitle(e.target.value)}
           />
         </div>
         <div>
@@ -42,7 +48,7 @@ const BlogForm = ({ createBlog }) => {
             type="text"
             value={author}
             name="Author"
-            onChange={handlChengeeAuthor}
+            onChange={(e) => setAuthor(e.target.value)}
           />
         </div>
         <div>
@@ -52,7 +58,7 @@ const BlogForm = ({ createBlog }) => {
             type="text"
             value={url}
             name="Url"
-            onChange={handlChengeeBlogUrl}
+            onChange={(e) => setUrl(e.target.value)}
           />
         </div>
         <button type="submit">create</button>

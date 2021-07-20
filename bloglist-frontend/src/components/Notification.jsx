@@ -8,9 +8,9 @@ const Notification = () => {
   })
 
   return (
-    <div className={'info'}>
-      {notification}
-    </div>
+    notification
+      ? <div className={'info'}>{notification}</div>
+      : null
   )
 }
 export default Notification

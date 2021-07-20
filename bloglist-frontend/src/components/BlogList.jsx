@@ -3,6 +3,7 @@ import { useSelector , useDispatch } from 'react-redux'
 import Blog from './Blog'
 import { likeBlog } from '../reducers/blogReducer'
 import { deleteBlog } from '../reducers/blogReducer'
+import { Link } from 'react-router-dom'
 
 const BlogList = ({ username }) => {
   const dispatch = useDispatch()
@@ -21,13 +22,14 @@ const BlogList = ({ username }) => {
 
   return (
     blogsSort.map(blog =>
-      <Blog
-        key={blog.id}
-        blog={blog}
-        handleLike={handleLike}
-        handleDeleteBlog={handleDeleteBlog}
-        username={username}
-      />
+      <Link key={blog.id} to={`/blogs/${blog.id}`}>
+        <Blog
+          blog={blog}
+          handleLike={handleLike}
+          handleDeleteBlog={handleDeleteBlog}
+          username={username}
+        />
+      </Link>
     ))
 
 }
