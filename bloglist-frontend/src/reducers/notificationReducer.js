@@ -15,7 +15,23 @@ export const setNotification = (data, time) => {
   return (dispatch) => {
     const notification = {
       type: 'SET_NOTIFICATION',
-      data
+      data: { text: data , error: false }
+    }
+    clearTimeout(timerID)
+    dispatch(notification)
+    timerID = setTimeout(() => {
+      dispatch({
+        type: 'CLEAN_NOTIFICATION',
+      })
+    }, time * 1000)
+  }
+}
+
+export const setNotificationError = (data, time) => {
+  return (dispatch) => {
+    const notification = {
+      type: 'SET_NOTIFICATION',
+      data: { text: data , error: true }
     }
     clearTimeout(timerID)
     dispatch(notification)

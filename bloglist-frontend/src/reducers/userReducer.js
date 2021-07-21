@@ -1,4 +1,6 @@
 import userService from '../services/login'
+import { setNotification } from './notificationReducer'
+import { setNotificationError } from './notificationReducer'
 
 const userReducer = (state = null, action) => {
 
@@ -23,14 +25,18 @@ const userReducer = (state = null, action) => {
 
 export const loginUser = (data) => {
   return async (dispatch) => {
-    const user = await userService.login(data)
-    window.localStorage.setItem(
-      'loggedNoteappUser', JSON.stringify(user)
-    )
-    dispatch({
-      type: 'USER_LOGIN',
-      data: user,
-    })
+    try {const user = await userService.login(data)
+      window.localStorage.setItem(
+        'loggedNoteappUser', JSON.stringify(user)
+      )
+      dispatch({
+        type: 'USER_LOGIN',
+        data: user,
+      })
+      dispatch(setNotification('login ;)', 5))
+    } catch(e) {
+      dispatch(setNotificationError('wrong username or password', 5))
+    }
   }
 }
 

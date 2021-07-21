@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt')
 const app = require('../app')
 const User = require('../models/user')
 const helper = require('./test_helper')
+const Blog = require('../models/blog')
 
 const api = supertest(app)
 
@@ -63,7 +64,7 @@ test('if user have not password orpassword  < 3 returned error', async () => {
     .expect(400)
 })
 
-afterAll(() => {
+afterAll(async () => {
   const user = await User.findOne({
     name: 'Aleksandr',
     username: 'Aleksandr',

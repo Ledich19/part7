@@ -4,6 +4,23 @@ import {
   Link
 } from 'react-router-dom'
 
+import styled from 'styled-components'
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  padding-left: 1em;
+  display: block;
+  height: 2em;
+  color: black;
+`
+const List = styled.ul`
+  text-decoration: none;
+  padding-left: 1em;
+  li:nth-child(odd) {
+    background: #f0f0f0; /* Цвет фона */
+   } 
+`
+
 const Users = () => {
 
   const users = useSelector(state => state.users)
@@ -15,18 +32,17 @@ const Users = () => {
     <div>
       <h2>Users</h2>
       <h4>blogs created</h4>
-      <ul>
+      <List>
         {users.map((user) => {
           return (
             <li key={user.id} >
               <div >
-                <Link to={`/users/${user.id}`} >{user.name}</Link>
-                <span> {user.blogs.length}</span>
+                <StyledLink to={`/users/${user.id}`} >{user.name} <span>{user.blogs.length}</span></StyledLink>
               </div>
             </li>
           )
         })}
-      </ul>
+      </List>
     </div>
   )
 }

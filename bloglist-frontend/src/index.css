@@ -26,3 +26,6 @@
   .remove {
     background-color: rgb(107, 71, 238);
   }
+  * {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }

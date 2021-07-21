@@ -6,10 +6,13 @@ const Notification = () => {
   const notification = useSelector(state => {
     return state.notification
   })
-
+  console.log(notification)
+  const classNitification = !notification.error
+    ? 'info'
+    :  'error'
   return (
     notification
-      ? <div className={'info'}>{notification}</div>
+      ? <div className={classNitification}>{notification.text}</div>
       : null
   )
 }

@@ -23,6 +23,14 @@ const blogReducer = (state = [], action) => {
     return state.concat(action.data)
   }
 
+  case 'ADD_COMENT': {
+    const id = action.id
+    const blogToChange = state.find((a) => a.id === id)
+    const changeBlog = { ...blogToChange, comments: [...blogToChange.comments].concat({ text: action.data.text,id: action.data.id, }) }
+    console.log(changeBlog)
+    return state.map(a => a.id !== id ? a : changeBlog)
+  }
+
   default:
     return state
   }
@@ -67,4 +75,14 @@ export const initialBlogs = (data) => {
   }
 }
 
+export const createComent = (id,data) => {
+  return async (dispatch) => {
+    const returnecoment = await blogsService.addComent(id,data)
+    dispatch({
+      type: 'ADD_COMENT',
+      data: returnecoment,
+      id,
+    })
+  }
+}
 export default blogReducer

@@ -1,5 +1,13 @@
 import React from 'react'
+import styled from 'styled-components'
 
+const List = styled.ul`
+  text-decoration: none;
+  padding-left: 1em;
+  li:nth-child(odd) {
+    background: #f0f0f0; /* Цвет фона */
+   } 
+`
 const UserBlogs = (props) => {
   console.log(props.blog)
   const blogs = props.user.blogs
@@ -11,13 +19,13 @@ const UserBlogs = (props) => {
       <h2>{props.user.username}</h2>
       <h4>added blogs</h4>
       <div>
-        {blogs.map((blog) => {
-          return (
-            <ul key={blog.id}>
-              <li> <div  >{blog.title}</div></li>
-            </ul>
-          )
-        })}
+        <List >
+          {blogs.map((blog) => {
+            return (
+              <li key={blog.id}> <div  >{blog.title}</div></li>
+            )
+          })}
+        </List>
       </div>
     </div>
   )

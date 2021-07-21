@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import blogService from '../services/blogs'
-import { setNotification } from '../reducers/notificationReducer'
 import { loginUser } from '../reducers/userReducer'
 
 const LoginForm = () => {
@@ -11,26 +10,18 @@ const LoginForm = () => {
   const handleLogin = async (event) => {
     event.preventDefault()
     const user = { username, password }
-
-    try {
-      dispatch(loginUser({ username, password }))
-      blogService.setToken(user.token)
-      dispatch(setNotification('login ;)', 5))
-    } catch (exception) {
-      dispatch(setNotification('wrong username or password', 5))
-    }
-
+    dispatch(loginUser({ username, password }))
+    blogService.setToken(user.token)
     setUsername('')
     setPassword('')
   }
-
 
   return (
     <div>
       <h2>Log in to application</h2>
       <form onSubmit={handleLogin}>
         <div>
-          username
+          username:
           <input
             id='username'
             type="text"
@@ -40,7 +31,7 @@ const LoginForm = () => {
           />
         </div>
         <div>
-          password
+          password:
           <input
             id='password'
             type="password"

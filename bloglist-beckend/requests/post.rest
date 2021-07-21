@@ -14,8 +14,8 @@ Content-Type: application/json
 
 {
   "blogs": [],
-  "name": "Aleksandr",
-  "username": "Aleksandr",
+  "name": "Valentin",
+  "username": "guest",
   "password": "55555"
 }
 
@@ -31,11 +31,19 @@ Content-Type: application/json
 ###
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFsZWtzYW5kciIsImlkIjoiNjBlM2ZjZDY3ZTQ5MTMyMjA4NmIyMGY0IiwiaWF0IjoxNjI1NTcwNjk3LCJleHAiOjE2MjU2MDY2OTd9.VRJhOTaePPQWthT5p89GGIrpsWdu0yzzTbML9q2Nvxk
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFsZWtzYW5kciIsImlkIjoiNjBmODAzMmRmNjRkNWQzODFjYjNjNDA4IiwiaWF0IjoxNjI2ODY2OTk3LCJleHAiOjE2MjY4NjcwNTd9.QGe-IFnyCqqTozvZluB9X4WtNr15UglsHFzy6GgtKDA
 
 {
   "title": "this is blog5",
   "author": "Name",
   "url": "https://gsuih/fbjehdj/hefgwhjg",
   "likes": 9
+}
+
+###
+POST http://localhost:3003/api/blogs/5a422a851b54a676234d17f7/comments
+Content-Type: application/json
+
+{
+  "text": "this is blog5"
 }

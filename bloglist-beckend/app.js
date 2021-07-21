@@ -11,9 +11,9 @@ const loginRouter = require('./controllers/login')
 const middlewere = require('./utils/middlewere')
 const config = require('./utils/config')
 const logger = require('./utils/logger')
+const testingRouter = require('./controllers/testind')
 
 if (process.env.NODE_ENV === 'test') {
-  const testingRouter = require('./controllers/testind')
   app.use('/api/testing', testingRouter)
 }
 
